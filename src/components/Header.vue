@@ -2,6 +2,7 @@
   <header>
     <Logo />
     <div class="nav nav-pills">
+      <!-- <div class="nav"> -->
       <div  
         v-for="nav in navigations"
         :key="nav.name"
@@ -72,7 +73,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "~/scss/main";
 
 header {
   height: 70px;

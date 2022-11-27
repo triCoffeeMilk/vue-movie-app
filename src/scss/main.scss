@@ -1,3 +1,6 @@
+// Required
+@import "../../node_modules/bootstrap/scss/functions";
+
 // Default variable overrides
 // variables 위에서 지정해줘야 한다.
 $primary: rgb(255, 135, 36);
@@ -11,10 +14,9 @@ $container-max-widths: (
 );
 
 // Required
-@import "../../node_modules/bootstrap/scss/functions";
 @import "../../node_modules/bootstrap/scss/variables";
 @import "../../node_modules/bootstrap/scss/maps";
 @import "../../node_modules/bootstrap/scss/mixins";
 @import "../../node_modules/bootstrap/scss/root";
 
-@import "../../node_modules/bootstrap/scss/bootstrap"
+@import "../../node_modules/bootstrap/scss/bootstrap";

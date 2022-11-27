@@ -17,4 +17,6 @@ export default {
 </script>
 
 <style lang="scss">
+template {
+}
 </style>
