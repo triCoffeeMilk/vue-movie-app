@@ -1,4 +1,4 @@
-import axois from 'axios'
+import axios from 'axios'
 
 const _defaultMessage = 'Search for the movie title!'
 
@@ -50,13 +50,14 @@ export default {
         if(pageLength > 1){
           for(let page = 2;page<=pageLength;page+=1){
             const res = await _fetchMovie({...payload, page})
+            // console.log(res)
             const { Search } = res.data
             commit('updateState', {
               movies: [...state.movies, ...Search]
             })
           }
         }
-      }catch(message) {
+      }catch({message}) {
         commit('updateState', {
           movies: [],
           message
@@ -77,9 +78,10 @@ export default {
         commit('updateState', {
           theMovie: res.data
         })
-      }catch (error) {
+      }catch ({message}) {
         commit('updateState', {
-          theMovie: {}
+          theMovie: {},
+          message
         })
       }finally {
         commit('updateState', {loading: false})
@@ -88,22 +90,8 @@ export default {
   }
 }
 
-function _fetchMovie(payload) {
-  const { title, type, page, year, id } = payload;
-  const OMDB_API_KEY = '7035c60c'
-  const url = id ?
-    `https://www.omdbapi.com/?apikey=${OMDB_API_KEY}&i=${id}` 
-    : `https://www.omdbapi.com/?apikey=${OMDB_API_KEY}&s=${title}&type=${type}&y=${year}&page=${page}`
-
-  return new Promise((resolve, reject)=> {
-    axois.get(url)
-      .then(res=>{
-        if(res.data.Error)  reject(res.data.Error)
-        resolve(res)
-      })
-      .catch(err=>{
-        reject(err)
-      })
-  })
-
+async function _fetchMovie(payload) {
+  const res = await axios.post('/.netlify/functions/movie', payload)
+  // console.log(res)
+  return res
 }

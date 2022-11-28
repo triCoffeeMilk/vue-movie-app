@@ -1,7 +1,9 @@
 <template>
-  <Header />
-  <RouterView />
-  <Footer />
+  <home country="us">
+    <Header />
+    <RouterView />
+    <Footer />
+  </home>
 </template>
 
 <script>

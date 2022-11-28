@@ -1,2 +1,12 @@
-[functions]
-  directory = "functions"
+[build]
+  command = "npm run build"
+  functions = "functions"
+  publish = "dist"
+
+[dev]
+  framework = "#custom"
+  command = "npm run dev"
+  targetPort = 8080 # 연결할 프로젝트 개발 서버의 포트
+  port = 8888 # 출력할 Netlify 서버의 포트
+  publish = "dist"
+  autoLaunch = false
