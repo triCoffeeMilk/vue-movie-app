@@ -1,8 +1,13 @@
 module.exports = {
   env: {
     browser: true,
-    node: true
+    node: true,
+    jest: true,
+    'cypress/globals': true
   },
+  plugins: [
+    'cypress'
+  ],
   extends: [
     'plugin:vue/vue3-strongly-recommended',
     'eslint:recommended'

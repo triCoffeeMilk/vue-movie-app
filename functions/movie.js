@@ -2,9 +2,9 @@ const axios = require('axios').default
 const { OMDB_API_KEY } = process.env
 
 exports.handler = async function (event) {
-  const { title, type, page, year, id } = JSON.parse(event.body);
-  const url = id ?
-    `https://www.omdbapi.com/?apikey=${OMDB_API_KEY}&i=${id}` 
+  const { title, type, page, year, imdbID } = JSON.parse(event.body);
+  const url = imdbID ?
+    `https://www.omdbapi.com/?apikey=${OMDB_API_KEY}&i=${imdbID}` 
     : `https://www.omdbapi.com/?apikey=${OMDB_API_KEY}&s=${title}&type=${type}&y=${year}&page=${page}`
   
   try {

@@ -2,6 +2,7 @@ dist
 .cache
 node_modules
 .env
+cypress/videos/
 
 # Local Netlify folder
 .netlify

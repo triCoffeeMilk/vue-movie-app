@@ -99,7 +99,7 @@ export default {
     this.$store.dispatch('movie/searchMovieWithId',{
     // this.searchMovieWithId({
       // movie/
-      id: this.$route.params.imdbID
+      imdbID: this.$route.params.imdbID
     })
   },
   methods: {

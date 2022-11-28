@@ -1,4 +1,5 @@
 import axios from 'axios'
+import _uniqBy from 'lodash/uniqBy'
 
 const _defaultMessage = 'Search for the movie title!'
 
@@ -39,21 +40,21 @@ export default {
         
         var res = await _fetchMovie({...payload, page:1})
         var { Search, totalResults } = res.data
-        // console.log(res);
-        commit('updateState', {movies: Search, message: ''})
-        // console.log(totalResults);
-        // console.log(typeof totalResults);
+        console.log(res);
+        commit('updateState', {movies: _uniqBy(Search, 'imdbID'), message: ''})
+        console.log(totalResults);
+        console.log(typeof totalResults);
 
         var pageLength = Math.ceil(parseInt(totalResults, 10)/10)
-        if(pageLength > payload.number/10)  pageLength = payload.number/10;
-
+        
         if(pageLength > 1){
+          if(pageLength > payload.number/10)  pageLength = payload.number/10;
           for(let page = 2;page<=pageLength;page+=1){
             const res = await _fetchMovie({...payload, page})
             // console.log(res)
             const { Search } = res.data
             commit('updateState', {
-              movies: [...state.movies, ...Search]
+              movies: [...state.movies, ..._uniqBy(Search, 'imdbID')]
             })
           }
         }
